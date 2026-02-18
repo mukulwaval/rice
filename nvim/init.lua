@@ -11,4 +11,3 @@ require 'config.diagnostics'
 
 -- Plugins
 require 'config.lazy'
-
