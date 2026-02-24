@@ -12,8 +12,10 @@ return {
           'rust-analyzer',
           'lua-language-server',
           'taplo',
-          'marksman',
+          'prettierd',
           'codelldb',
+          'jsonlint',
+          'markdownlint',
         },
       }
 

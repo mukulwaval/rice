@@ -17,6 +17,13 @@ return {
           'vim',
           'vimdoc',
           'rust',
+          'python',
+          'javascript',
+          'typescript',
+          'tsx',
+          'json',
+          'html',
+          'css',
         },
         highlight = {
           enable = true,

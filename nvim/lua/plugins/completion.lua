@@ -140,11 +140,7 @@ return {
       vim.lsp.config('taplo', {
         capabilities = capabilities,
       })
-      vim.lsp.config('marksman', {
-        capabilities = capabilities,
-      })
 
-      vim.lsp.enable 'marksman'
       vim.lsp.enable 'lua_ls'
       vim.lsp.enable 'rust_analyzer'
       vim.lsp.enable 'taplo'

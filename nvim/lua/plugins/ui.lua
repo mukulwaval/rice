@@ -9,6 +9,7 @@ return {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('gruvbox').setup {
+        transparent_mode = true,
         styles = {
           comments = { italic = true }, -- Enable italics in comments
         },
@@ -18,6 +19,26 @@ return {
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'gruvbox'
+      local groups = {
+        'Normal',
+        'NormalNC',
+        'NormalFloat',
+        'FloatBorder',
+        'SignColumn',
+        'EndOfBuffer',
+        'StatusLine',
+        'StatusLineNC',
+        'WinBar',
+        'WinBarNC',
+        'Pmenu',
+        'PmenuSel',
+        'TelescopeNormal',
+        'TelescopeBorder',
+      }
+
+      for _, group in ipairs(groups) do
+        vim.api.nvim_set_hl(0, group, { bg = 'none' })
+      end
     end,
   },
 
@@ -255,5 +276,8 @@ return {
     -- dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
+  },
+  {
+    'HiPhish/rainbow-delimiters.nvim',
   },
 }

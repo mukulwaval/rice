@@ -42,3 +42,13 @@ vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() e
 
 vim.keymap.set('n', '_', '<cmd>e .<CR>')
 vim.keymap.set('n', '-', '<cmd>Oil<CR>')
+
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
+vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
+
+vim.keymap.set('n', '*', '*zz', { desc = 'Search word below cursor' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Search word below cursor' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Search word below cursor' })
+
+-- greatest remap ever
+vim.keymap.set('n', '<leader>p', '"_dP')
