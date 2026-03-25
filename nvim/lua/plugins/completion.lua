@@ -107,43 +107,6 @@ return {
         }),
         matching = { disallow_symbol_nonprefix_matching = false },
       })
-
-      -- Enable LSP capabilities for nvim-cmp
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      vim.lsp.config('lua_ls', {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' },
-            },
-            workspace = {
-              checkThirdParty = false,
-            },
-            telemetry = {
-              enable = false,
-            },
-          },
-        },
-      })
-      vim.lsp.config('rust_analyzer', {
-        capabilities = capabilities,
-        settings = {
-          ['rust-analyzer'] = {
-            cargo = {
-              allFeatures = true,
-            },
-            checkOnSave = true,
-          },
-        },
-      })
-      vim.lsp.config('taplo', {
-        capabilities = capabilities,
-      })
-
-      vim.lsp.enable 'lua_ls'
-      vim.lsp.enable 'rust_analyzer'
-      vim.lsp.enable 'taplo'
     end,
   },
 }

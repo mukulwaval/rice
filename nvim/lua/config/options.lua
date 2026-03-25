@@ -13,9 +13,6 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 vim.o.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = 'a'
-
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
@@ -75,3 +72,6 @@ vim.o.confirm = true
 
 -- set the info bar at the top of the files
 vim.o.winbar = '%=%m %f'
+
+-- disable the mouse entirely
+vim.o.mouse = ""

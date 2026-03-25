@@ -4,12 +4,13 @@ return {
     dependencies = {
       { 'mason-org/mason.nvim', opts = {} },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',    opts = {} },
     },
     config = function()
       require('mason-tool-installer').setup {
         ensure_installed = {
           'rust-analyzer',
+          'clangd',
           'lua-language-server',
           'taplo',
           'prettierd',
@@ -18,6 +19,54 @@ return {
           'markdownlint',
         },
       }
+
+      -- Enable LSP capabilities for nvim-cmp
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      vim.lsp.config('lua_ls', {
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' },
+            },
+            workspace = {
+              checkThirdParty = false,
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+      })
+      vim.lsp.config('clangd', {
+        capabilities = capabilities,
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--completion-style=detailed",
+          "--header-insertion=iwyu",
+        },
+      })
+      vim.lsp.config('rust_analyzer', {
+        capabilities = capabilities,
+        settings = {
+          ['rust-analyzer'] = {
+            cargo = {
+              allFeatures = true,
+            },
+            checkOnSave = true,
+          },
+        },
+      })
+      vim.lsp.config('taplo', {
+        capabilities = capabilities,
+      })
+
+      vim.lsp.enable 'lua_ls'
+      vim.lsp.enable 'rust_analyzer'
+      vim.lsp.enable 'taplo'
+      vim.lsp.enable 'clangd'
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -78,7 +127,9 @@ return {
           --
           -- This may be unwanted, since they displace some of your code
           if client and client:supports_method('textDocument/inlayHint', event.buf) then
-            map('<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[T]oggle Inlay [H]ints')
+            map('<leader>th',
+              function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end,
+              '[T]oggle Inlay [H]ints')
           end
         end,
       })
