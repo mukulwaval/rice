@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#222222",
+          "leading_diamond": "\ue0b6",
+          "template": " {{ .Icon }} "
+        },
+        {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b4",
+          "background": "#222222",
+          "foreground": "#ffffff",
+          "template": "{{ .UserName }}@{{ .HostName }} "
+        },
+        {
+          "background": "#458588",
+          "foreground": "#282828",
+          "powerline_symbol": "\ue0b4",
+          "options": { "style": "folder" },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#ffff66",
+          "foreground": "#111111",
+          "powerline_symbol": "\ue0b4",
+          "style": "powerline",
+          "template": " \uf0ad ",
+          "type": "root"
+        },
+        {
+          "background": "#98971A",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}",
+            "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+            "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+          ],
+          "foreground": "#282828",
+          "options": {
+            "branch_template": "{{ trunc 25 .Branch }}",
+            "branch_icon": "\uE0A0 "
+          },
+          "style": "powerline",
+          "powerline_symbol": "\ue0b4",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{ .Folder }}",
+  "final_space": true,
+  "version": 4
+}

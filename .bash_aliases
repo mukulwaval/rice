@@ -1,0 +1,1 @@
+alias wavsh='codecrafters-shell'
