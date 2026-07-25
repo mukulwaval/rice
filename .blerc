@@ -40,4 +40,6 @@ ble-face -s varname_transform         'fg=teal,bold'
 ble-face -s varname_unset             'fg=silver'
 ble-face -s vbell_erase               'bg=silver'
 
-bleopt complete_auto_complete=0
+bleopt complete_auto_complete=
+bleopt complete_auto_delay=300
+bleopt highlight_timeout_sync=0
