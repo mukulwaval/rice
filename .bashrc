@@ -133,3 +133,5 @@ export PATH="$PATH:/opt/nvim/"
 
 source -- ~/.local/share/blesh/ble.sh
 
+export EDITOR='nvim'
+

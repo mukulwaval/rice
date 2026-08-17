@@ -1,0 +1,23 @@
+# Expects: tmuxinator start worktree_template [project_name] [optional_worktree]
+
+<%
+  # Explicitly extract strings from the args array indices
+  project_name = @args[0] || "default"
+  worktree     = @args[1] # Will be nil if not provided
+  
+  # Construct path: ~/projects/name or ~/projects/name/worktree
+  base_path    = "~/projects/#{project_name}"
+  target_path  = worktree ? "#{base_path}/#{worktree}" : base_path
+%>
+
+name: <%= project_name %>
+root: <%= target_path %>
+
+windows:
+  - editor:
+      panes:
+        - nvim .
+  - log:
+      panes:
+        - 
+
